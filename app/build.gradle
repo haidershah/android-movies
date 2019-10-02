@@ -59,4 +59,7 @@ dependencies {
 
     // Paging
     implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+
+    // Joda Time
+    implementation "joda-time:joda-time:$joda_time_version"
 }

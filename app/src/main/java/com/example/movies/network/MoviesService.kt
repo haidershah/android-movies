@@ -1,6 +1,5 @@
 package com.example.movies.network
 
-import com.example.movies.network.model.NetworkMovie
 import com.example.movies.network.model.NetworkResult
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

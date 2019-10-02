@@ -8,5 +8,11 @@ data class NetworkMovie(
     val id: Int,
 
     @SerializedName("title")
-    val title: String
+    val title: String,
+
+    @SerializedName("poster_path")
+    val imagePath: String,
+
+    @SerializedName("release_date")
+    val releaseDate: String
 )
