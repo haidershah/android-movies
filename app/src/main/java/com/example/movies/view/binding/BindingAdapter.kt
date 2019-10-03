@@ -3,6 +3,7 @@ package com.example.movies.view.binding
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import androidx.paging.PagedList
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.movies.R
@@ -12,7 +13,7 @@ import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormat
 
 @BindingAdapter("listData")
-fun RecyclerView.setListData(movies: List<Movie>?) {
+fun RecyclerView.setListData(movies: PagedList<Movie>?) {
     val adapter = adapter as MoviesAdapter
     adapter.submitList(movies)
 }
@@ -28,8 +29,13 @@ fun ImageView.setImageUrl(imageUrl: String) {
 
 @BindingAdapter("releaseDate")
 fun TextView.setReleaseDate(releaseDate: String) {
-    val date = DateTime.parse(
-        releaseDate, DateTimeFormat.forPattern("yyyy-MM-dd")
-    ).toString(DateTimeFormat.mediumDate())
-    text = context.getString(R.string.release_date, date)
+    val formattedDate: String = if (releaseDate.isNotEmpty()) {
+        DateTime.parse(
+            releaseDate, DateTimeFormat.forPattern("yyyy-MM-dd")
+        ).toString(DateTimeFormat.mediumDate())
+    } else {
+        context.getString(R.string.not_available)
+    }
+
+    text = context.getString(R.string.release_date, formattedDate)
 }
