@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.example.movies.R
 import com.example.movies.databinding.FragmentMoviesBinding
 import com.example.movies.view.adapter.MoviesAdapter
@@ -23,7 +23,7 @@ class MoviesFragment : Fragment() {
             inflater, R.layout.fragment_movies, container, false
         )
 
-        val viewModel = ViewModelProviders.of(this)
+        val viewModel = ViewModelProvider(this)
             .get(MoviesViewModel::class.java)
 
         binding.lifecycleOwner = this
