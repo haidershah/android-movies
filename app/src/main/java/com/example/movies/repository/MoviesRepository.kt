@@ -8,8 +8,8 @@ private const val API_KEY = "61aeba9b75b70aa856142c608e5bc6f2"
 
 class MoviesRepository {
 
-    suspend fun searchFunction(query: String): List<Movie> {
-        return MoviesApi.RETROFIT_SERVICE.searchMovies(API_KEY, query)
+    suspend fun searchFunction(query: String, page: Int): List<Movie> {
+        return MoviesApi.RETROFIT_SERVICE.searchMovies(API_KEY, query, page)
             .movies
             .asDomainModels()
     }

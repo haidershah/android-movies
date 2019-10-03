@@ -28,6 +28,7 @@ class MoviesFragment : Fragment() {
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+        binding.moviesRecyclerView.setHasFixedSize(true)
         binding.moviesRecyclerView.adapter = MoviesAdapter()
 
         return binding.root

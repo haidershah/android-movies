@@ -2,13 +2,13 @@ package com.example.movies.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movies.databinding.ListItemMovieBinding
 import com.example.movies.domain.model.Movie
 
-class MoviesAdapter : ListAdapter<Movie, MoviesAdapter.MovieViewHolder>(MovieDiffCallback()) {
+class MoviesAdapter : PagedListAdapter<Movie, MoviesAdapter.MovieViewHolder>(MovieDiffCallback()) {
 
     class MovieViewHolder(val binding: ListItemMovieBinding) :
         RecyclerView.ViewHolder(binding.root)
