@@ -9,7 +9,9 @@ import androidx.paging.PagedList
 import com.example.movies.domain.model.Movie
 import com.example.movies.repository.MoviesRepository
 import com.example.movies.view.datasource.MovieDataSourceFactory
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MoviesViewModel : ViewModel() {
 
@@ -38,8 +40,10 @@ class MoviesViewModel : ViewModel() {
 
     private fun loadInitial(callback: PageKeyedDataSource.LoadInitialCallback<Int, Movie>) {
         viewModelScope.launch {
-            val movies = repository.searchFunction("fast", FIRST_PAGE)
-            callback.onResult(movies, null, FIRST_PAGE + 1)
+            withContext(Dispatchers.IO) {
+                val movies = repository.searchFunction("fast", FIRST_PAGE)
+                callback.onResult(movies, null, FIRST_PAGE + 1)
+            }
         }
     }
 
@@ -48,8 +52,10 @@ class MoviesViewModel : ViewModel() {
         callback: PageKeyedDataSource.LoadCallback<Int, Movie>
     ) {
         viewModelScope.launch {
-            val movies = repository.searchFunction("fast", params.key)
-            callback.onResult(movies, params.key + 1)
+            withContext(Dispatchers.IO) {
+                val movies = repository.searchFunction("fast", params.key)
+                callback.onResult(movies, params.key + 1)
+            }
         }
     }
 }
